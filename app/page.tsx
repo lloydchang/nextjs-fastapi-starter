@@ -22,11 +22,13 @@ const Page: React.FC = () => {
   }, []);
 
   return (
-    <ul>
-      {data.map((item, index) => (
-        <li key={index}>{item.title}</li>
-      ))}
-    </ul>
+    <div style={{ backgroundColor: 'black', color: 'white', padding: '20px' }}>
+      <ul>
+        {data.map((item, index) => (
+          <li key={index}>{item.title}</li>
+        ))}
+      </ul>
+    </div>
   );
 };
 
