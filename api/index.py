@@ -16,7 +16,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-sample_data = [{"title": "AI"}]  # Simplified sample data definition
+sample_data = [{"title": "12345"}]  # Simplified sample data definition
 
 # Search endpoint that filters sample data based on the query.
 @app.get("/search", response_model=List[Dict])

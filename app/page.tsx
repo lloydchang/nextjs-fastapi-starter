@@ -16,7 +16,7 @@ const Page: React.FC = () => {
   const [data, setData] = useState<Item[]>([]); // Set the initial state type to Item[]
 
   useEffect(() => {
-    axios.get<Item[]>('http://localhost:8000/search?query=TED') // Ensure the response is typed
+    axios.get<Item[]>('http://localhost:8000/search?query=') // Ensure the response is typed
       .then((res) => setData(res.data))
       .catch(console.error); // Simplified error handling
   }, []);
