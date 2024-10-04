@@ -1,4 +1,5 @@
 fastapi
 numpy
 pandas
+sentence_transformers
 uvicorn
