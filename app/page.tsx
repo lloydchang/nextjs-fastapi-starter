@@ -6,27 +6,35 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-// Define an interface for the item
-interface Item {
-  title: string;
-}
-
-// Define the state type as an array of Item
 const Page: React.FC = () => {
-  const [data, setData] = useState<Item[]>([]); // Set the initial state type to Item[]
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true); // Track loading state
 
   useEffect(() => {
-    axios.get<Item[]>('http://localhost:8000/search?query=') // Ensure the response is typed
-      .then((res) => setData(res.data))
-      .catch(console.error); // Simplified error handling
+    axios.get('http://localhost:8000/search?query=')
+      .then((res) => {
+        setData(res.data);
+        setLoading(false); // Set loading to false after data is fetched
+      })
+      .catch((error) => {
+        console.error(error);
+        setLoading(false); // Set loading to false on error as well
+      });
   }, []);
 
   return (
-    <ul>
-      {data.map((item, index) => (
-        <li key={index}>{item.title}</li>
-      ))}
-    </ul>
+    <div>
+      <h1>Hello,</h1> {/* Greeting displayed in the UI */}
+      {loading ? (
+        <p>Loading...</p> // Optional loading message
+      ) : (
+        <ul>
+          {data.map((item, index) => (
+            <li key={index}>{item.title}</li>
+          ))}
+        </ul>
+      )}
+    </div>
   );
 };
 
