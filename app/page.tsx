@@ -6,11 +6,17 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
+// Define an interface for the item
+interface Item {
+  title: string;
+}
+
+// Define the state type as an array of Item
 const Page: React.FC = () => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<Item[]>([]); // Set the initial state type to Item[]
 
   useEffect(() => {
-    axios.get('http://localhost:8000/search?query=TED')
+    axios.get<Item[]>('http://localhost:8000/search?query=TED') // Ensure the response is typed
       .then((res) => setData(res.data))
       .catch(console.error); // Simplified error handling
   }, []);
